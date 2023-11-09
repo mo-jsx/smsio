@@ -2,21 +2,27 @@
     "manifest_version": 3,
     "version": "1.0.0",
     "name": "SMSio",
+    "description": "SMS provider for internal Pando teams.",
     "action": {
-        "default_popup": "index.html"
+        "default_popup": "index.html",
+        "default_title": "SMSio",
+        "default_icon": {
+            "16": "logo.png",
+            "24": "logo.png",
+            "32": "logo.png"
+        }
     },
     "permissions": [
         "scripting"
     ],
-    "background": {
-        "service_worker": "sw.js",
-        "type": "module"
-    },
     "host_permissions": [
         "http://*/*",
         "https://*/*"
     ],
     "icons": {
-        "32": "vite.svg"
+        "16": "logo.png",
+        "32": "logo.png",
+        "48": "logo.png",
+        "128": "logo.png"
     }
 }

@@ -1,35 +1,50 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState } from "react";
+import "./App.css";
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+  const [sms, setSms] = useState("");
+
+  const isDisabled = sms.length >= 160 || sms.length === 0 ? true : false;
+
+  const handleChange = (e: React.FormEvent<HTMLInputElement>) =>
+    setSms(e.currentTarget.value);
+
+  const handleSubmit = (e: React.SyntheticEvent) => {
+    e.preventDefault();
+    setSms("");
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    <div className="app">
+      <header>
+        <img src={"/logo.png"} alt="SMSio logo" />
+        <h1>SMSio</h1>
+      </header>
 
-export default App
+      <main>
+        <form onSubmit={handleSubmit}>
+          <label htmlFor="sms">
+            Enter your message:
+            <br />
+            <input
+              type="text"
+              name="sms"
+              id="sms"
+              value={sms}
+              onChange={(e) => handleChange(e)}
+              autoComplete="off"
+              autoCapitalize="on"
+              maxLength={160}
+            />
+          </label>
+          <button type="submit" disabled={isDisabled}>
+            Send
+          </button>
+          <p>{sms.length >= 160 && "Maximum SMS length is 160 characters!"}</p>
+        </form>
+      </main>
+    </div>
+  );
+};
+
+export default App;
