@@ -2,41 +2,11 @@ body {
   background: white;
 }
 
-.app {
-  width: 100%;
-}
-
-header {
-  width: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  padding: 1rem 0rem 0rem 0rem;
-}
-
-img {
-  width: 96px;
-}
-h1 {
-  text-align: center;
-}
-
 main {
-  padding: 0rem 1rem;
+  padding: 0rem 0rem 0rem 0.5rem;
 }
 
-input[type="text"] {
-  border-radius: 5px;
-  outline: none;
-  margin-right: 10px;
-  padding: 0.6em 1.2em;  
-}
-input[type="text"]:focus {
-  background: midnightblue;
-}
-p {
-  /* position: absolute; */
+.alert {
   margin: 5px 0px 10px 0px;
   font-size: 0.8rem;
   color: red;

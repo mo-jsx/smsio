@@ -1,50 +1,28 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { Home, Login } from "./pages";
+import checkLocalStorageKey from "./utils/checkLocalStorageKey";
 import "./App.css";
 
 const App = () => {
-  const [sms, setSms] = useState("");
+  const [isAvailable, setIsAvailable] = useState(false);
 
-  const isDisabled = sms.length >= 160 || sms.length === 0 ? true : false;
+  const userId = "id";
 
-  const handleChange = (e: React.FormEvent<HTMLInputElement>) =>
-    setSms(e.currentTarget.value);
+  useEffect(() => {
+    checkLocalStorageKey(userId, setIsAvailable);
 
-  const handleSubmit = (e: React.SyntheticEvent) => {
-    e.preventDefault();
-    setSms("");
-  };
+    const intervalId = setInterval(() => {
+      checkLocalStorageKey(userId, setIsAvailable);
+    }, 60000);
 
-  return (
-    <div className="app">
-      <header>
-        <img src={"/logo.png"} alt="SMSio logo" />
-        <h1>SMSio</h1>
-      </header>
+    return () => clearInterval(intervalId);
+  }, [isAvailable]);
 
-      <main>
-        <form onSubmit={handleSubmit}>
-          <label htmlFor="sms">
-            Enter your message:
-            <br />
-            <input
-              type="text"
-              name="sms"
-              id="sms"
-              value={sms}
-              onChange={(e) => handleChange(e)}
-              autoComplete="off"
-              autoCapitalize="on"
-              maxLength={160}
-            />
-          </label>
-          <button type="submit" disabled={isDisabled}>
-            Send
-          </button>
-          <p>{sms.length >= 160 && "Maximum SMS length is 160 characters!"}</p>
-        </form>
-      </main>
-    </div>
-  );
+  if (!isAvailable) {
+    return <Login />;
+  } else {
+    return <Home />;
+  }
 };
 
 export default App;
