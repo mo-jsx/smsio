@@ -1,0 +1,12 @@
+label {
+    font-size: 0.8rem;
+}
+input[type="text"] {
+    border-radius: 5px;
+    outline: none;
+    margin-right: 10px;
+    padding: 0.6em 1.2em;  
+}
+input[type="text"]:focus {
+background: midnightblue;
+}
