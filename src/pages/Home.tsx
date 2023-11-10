@@ -25,11 +25,12 @@ const Home = () => {
           autoComplete="off"
           autoCapitalize="on"
           maxLength={160}
+          data-cy="sms-form"
         />
-        <button type="submit" disabled={isDisabled}>
+        <button type="submit" disabled={isDisabled} data-cy="sms-button">
           Send
         </button>
-        <p className="alert">
+        <p className="alert" data-cy="sms-alert">
           {sms.length >= 160 && "Maximum SMS length is 160 characters!"}
         </p>
       </form>

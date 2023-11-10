@@ -33,8 +33,11 @@ const Login = () => {
           name={"id"}
           value={id || ""}
           handleChange={setId}
+          data-cy="login-form"
         />
-        <button type="submit">Login</button>
+        <button type="submit" data-cy="login-button">
+          Login
+        </button>
       </form>
       <p className="alert">{error && "Please check your ID and try again!"}</p>
     </main>
